@@ -1,5 +1,6 @@
 const express = require('express');
 var router = express.Router();
+const { getMap } = require('../controllers/mapController');
 
 router.get('/', function(req, res) {
     res.render('index', {

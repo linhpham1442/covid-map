@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>GreenMask</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.20/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.20/"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossOrigin="anonymous" />
+    <script>
+        require([
+            "esri/views/MapView",
+            "esri/WebMap",
+            "esri/widgets/LayerList",
+            "esri/widgets/BasemapGallery",
+            "esri/widgets/Legend",
+            "esri/widgets/Expand"
+        ], function(
+            MapView,
+            WebMap,
+            LayerList,
+            BasemapGallery,
+            Legend,
+            Expand
+        ) {
+            var data1 = [{
+                type: "point",
+                longitude: 106.80353181904727,
+                latitude: 10.872181405352505,
+                Name: "point 1",
+                Location: "location 1"
+            }, {
+                type: "point",
+                longitude: 106.79881113118093,
+                latitude: 10.876164084221884,
+                Name: "point 2",
+                Location: "location 2"
+            }, {
+                type: "point",
+                longitude: 106.80726545399608,
+                latitude: 10.877786641846185,
+                Name: "point 3",
+                Location: "location 3"
+            }]
+
+
+            var map = new WebMap({
+                basemap: "topo-vector"
+            });
+
+            var view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [106.8033387, 10.8739831],
+                zoom: 16,
+                highlightOptions: {
+                    color: "blue"
+                }
+            });
+
+            // add legend, layerlist and basemapGallery widgets
+            view.ui.add(
+                [
+                    new Expand({
+                        content: new Legend({
+                            view: view
+                        }),
+                        view: view,
+                        group: "top-left"
+                    }),
+                    new Expand({
+                        content: new LayerList({
+                            view: view
+                        }),
+                        view: view,
+                        group: "top-left"
+                    }),
+                    new Expand({
+                        content: new BasemapGallery({
+                            view: view
+                        }),
+                        view: view,
+                        expandIconClass: "esri-icon-basemap",
+                        group: "top-left"
+                    })
+                ],
+                "top-right"
+            );
+        });
+    </script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon"></div>
+        </div>
+        <nav class="nav">
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="map.html" class="menu-link">Bản đồ</a>
+                </li>
+                <li class="menu-item">
+                    <a href="statistic.html" class="menu-link">Thống kê</a>
+                </li>
+                <li class="menu-item">
+                    <a href="route.html" class="menu-link">Lộ trình</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- <div class="form-group">
+          <div class="btn-group">
+              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Tìm kiếm nhanh">
+              <div class="btn btn-info">Tìm</div>
+          </div>
+      </div> -->
+
+        <div class="simple-search">
+            <input type="text" placeholder="Tìm kiếm" />
+            <button><i class="fa fa-search"></i></button>
+        </div>
+    </header>
+    <div id="viewDiv"></div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

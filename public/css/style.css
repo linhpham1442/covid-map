@@ -1,3 +1,26 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+:root {
+    --primary: #08aeea;
+    --secondary: #13D2B8;
+    --purple: #bd93f9;
+    --pink: #ff6bcb;
+    --blue: #8be9fd;
+    --gray: #333;
+    --darkgreen: #155545;
+    --lightgreen: #6fce84;
+    --white: #fff;
+    --font: "Roboto", sans-serif;
+    --gradient: linear-gradient(40deg, #ff6ec4, #7873f5);
+    --shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
 html,
 body,
 #viewDiv {
@@ -5,4 +28,196 @@ body,
     margin: 0;
     height: 100%;
     width: 100%;
+}
+
+html {
+    font-size: 100%;
+}
+
+
+/* body {
+    font-family: var(--font);
+    font-size: 1.4rem;
+    overflow-x: hidden;
+    font-weight: 300;
+} */
+
+body {
+    margin: 0;
+    font-family: var(--font);
+    font-size: 1rem;
+    overflow-x: hidden;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #212529;
+    background-color: var(--white);
+}
+
+.header {
+    background-color: var(--darkgreen);
+    width: 100%;
+    height: 50px;
+    display: flex;
+}
+
+.logo {
+    width: 10%;
+}
+
+.logo-icon {
+    width: 60px;
+    margin: auto;
+    background-color: var(--white);
+}
+
+
+/* Style for menu bar */
+
+.nav {
+    position: relative;
+    width: 60%;
+    margin: 0 10px;
+}
+
+
+/* 
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+*/
+
+input,
+button,
+textarea,
+select {
+    font-family: var(--font);
+    font-size: 1.4rem;
+    font-weight: 300;
+    outline: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    /* -webkit-appearance: none; */
+}
+
+ul {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.menu {
+    display: flex;
+    margin-bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-link {
+    font-size: 1rem;
+    color: var(--white);
+    display: block;
+    margin: 0.5rem 0.5rem;
+    text-transform: uppercase;
+}
+
+.menu-link:hover {
+    color: var(--lightgreen);
+    text-decoration: none;
+}
+
+.menu-item {
+    position: relative;
+}
+
+
+/* Style for search bar */
+
+button {
+    cursor: pointer;
+}
+
+.simple-search {
+    width: 30%;
+    margin: 10px 10px 10px 0;
+    display: flex;
+}
+
+.simple-search button {
+    padding: 10px 20px;
+    color: white;
+    flex-shrink: 0;
+    border-radius: 0px 8px 8px 0px;
+    background-color: #3baf54;
+    margin-left: 0px;
+}
+
+.simple-search button:hover {
+    background-color: #6fce84;
+}
+
+.simple-search input {
+    width: 70%;
+    padding: 15px;
+    background-color: #fafafa;
+    border-radius: 8px 0 0 8px;
+    -webkit-appearance: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* Style for map page*/
+
+.left-menu {
+    width: 250px;
+    height: 650px;
+    background-color: #84A98C;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 30px 0 10px;
+}
+
+.form {
+    width: 80%;
+    height: fit-content;
+    margin: auto;
+}
+
+.form-check {
+    margin: 20px 0;
+}
+
+
+/* Style for route page*/
+
+.form-route {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.form-input input {
+    width: 90%;
+    border-radius: 5px;
+    margin: 7px 11px;
+    padding: 7px;
+}
+
+.form-route button {
+    width: 80px;
+    height: auto;
+    margin: 10px 80px;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #38a750;
 }

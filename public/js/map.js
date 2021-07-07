@@ -160,6 +160,7 @@ require([
         }
     });
     graphicsLayer.add(textGraphic);
+    view.ui.add(graphicsLayer)
 
 });
 // //starpolygon
