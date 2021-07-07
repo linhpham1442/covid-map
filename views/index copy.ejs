@@ -109,6 +109,7 @@
                 content: "Điểm này ở <b>{Location}</b>.",
 
             };
+
             var point = {
                 type: "point",
                 longitude: 106.80353181904727,
@@ -133,6 +134,32 @@
             graphicsLayer.add(pointGraphic);
             map.add(graphicsLayer);
 
+
+
+            var simpleLineSymbol = {
+                type: "simple-line",
+                color: [226, 119, 40], // orange
+                width: 2
+            };
+
+            var polyline = {
+                type: "polyline",
+                paths: [
+                    [106.80123584813046, 10.869821274263774],
+                    [106.80233018940856, 10.871022414740189],
+                    [106.80084961003229, 10.87110670511837]
+                ]
+            };
+
+            var polylineGraphic = new Graphic({
+                geometry: polyline,
+                symbol: simpleLineSymbol,
+                attributes: attributes,
+                popupTemplate: popupTemplate
+            });
+
+            graphicsLayer.add(polylineGraphic);
+            map.add(graphicsLayer);
             var graphicsLayer1 = new GraphicsLayer();
             //polygon 
             var polygon = {
@@ -174,7 +201,105 @@
             });
 
             graphicsLayer1.add(polygonGraphic);
-            map.add(graphicsLayer1)
+
+            var pictureGraphic = new Graphic({
+                geometry: {
+                    type: "point",
+                    longitude: 106.7986823851482,
+                    latitude: 10.875826928282969
+                },
+                symbol: {
+                    type: "picture-marker",
+                    url: "https://cdn2.iconfinder.com/data/icons/map-pins-1-01-easylines/128/yumminky-pin-68-512.png", //"https://developers.arcgis.com/labs/images/bluepin.png",
+                    width: "24px",
+                    height: "24px"
+                }
+            });
+            graphicsLayer1.add(pictureGraphic);
+            graphicsLayer.title = "Vungf 1"
+            graphicsLayer1.title = "Vungf "
+            map.add(graphicsLayer1);
+
+            var graphicsLayerPoint = new GraphicsLayer();
+            jsondata.points.forEach(function(point) {
+
+                // Create attributes
+                var attributes = {
+                    Name: "My point", // The name of the
+                    Location: "gần đường Hàn Thuyên", // The owner of the
+                };
+                // Create popup template
+                var popupTemplate = {
+                    title: "{Name}",
+                    content: "Điểm này ở <b>{Location}</b>."
+                };
+
+                //var point = {
+                // type: "point",
+                // longitude: 106.80353181904727,
+                // latitude: 10.872181405352505
+                //};
+                var simpleMarkerSymbol = {
+                    type: "simple-marker",
+                    color: [226, 119, 40], // orange
+                    outline: {
+                        color: [255, 255, 255], // white
+                        width: 1
+                    }
+                };
+
+                var pointGraphic = new Graphic({
+                    geometry: point,
+                    symbol: simpleMarkerSymbol,
+                    attributes: point,
+                    popupTemplate: popupTemplate
+                });
+
+                graphicsLayerPoint.add(pointGraphic);
+
+            });
+            map.add(graphicsLayerPoint);
+            var graphicsLayerPolygon = new GraphicsLayer();
+            jsondata.polygons.forEach(function(polygon) { //Di chuột vào polygons và polygon so sánh với jsondata ở trên để biết có gì
+
+                // Create attributes
+                var attributes = {
+                    Name: "Vung cach li 1", // The name of the
+                    Location: "Dường sknskndjf", // The owner of the
+                };
+                // Create popup template
+                var popupTemplate = {
+                    title: "{Name}",
+                    content: "Địa chỉ <b>{Location}</b>."
+                };
+
+                //var point = {
+                // type: "point",
+                // longitude: 106.80353181904727,
+                // latitude: 10.872181405352505
+                //};
+                var simpleFillSymbol = {
+                    type: "simple-fill",
+                    color: [0, 128, 128, 0.4], // crimson, opacity 30%
+                    outline: {
+                        color: [0, 128, 128], // crimson
+                        width: 2,
+                    },
+                };
+
+                var polygonGraphic = new Graphic({
+                    geometry: polygon,
+                    symbol: simpleFillSymbol,
+                    attributes: polygon,
+                    popupTemplate: popupTemplate
+                });
+
+                graphicsLayerPolygon.add(polygonGraphic);
+
+            })
+            graphicsLayerPoint.title = "Benh nhan"
+            graphicsLayerPolygon.title = "Vung cach li"
+            map.add(graphicsLayerPolygon);
 
 
             // Mô tả
