@@ -26,7 +26,7 @@ body,
 #viewDiv {
     padding: 0;
     margin: 0;
-    height: 100%;
+    height: 97.5%;
     width: 100%;
 }
 
@@ -126,6 +126,17 @@ ul {
     text-transform: uppercase;
 }
 
+.active {
+    color: var(--lightgreen);
+    border: 1px solid #fff;
+    text-decoration: none;
+}
+
+.active a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 .menu-link:hover {
     color: var(--lightgreen);
     text-decoration: none;
@@ -143,9 +154,21 @@ button {
 }
 
 .simple-search {
-    width: 30%;
+    /* width: 30%; */
     margin: 10px 10px 10px 0;
-    display: flex;
+    /* display: flex; */
+}
+
+.esri-search .esri-search__submit-button {
+    background-color: #3baf54;
+    color: white;
+    border-radius: 0px 8px 8px 0px;
+    flex-shrink: 0;
+}
+
+.esri-search {
+    border-radius: 0px 8px 8px 0px;
+    margin: 8px 10px 12px 0;
 }
 
 .simple-search button {

@@ -6,24 +6,12 @@
     <title>
         <%= title%>
     </title>
-    <!-- <style>
-        html,
-        body,
-        #viewDiv {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            width: 100%;
-        }
-    </style> -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossOrigin="anonymous" />
-
     <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.15/"></script>
-
     <script>
         var jsondata = {
             "points": [{
@@ -85,8 +73,10 @@
             "esri/widgets/LayerList",
             "esri/widgets/BasemapGallery",
             "esri/widgets/Legend",
-            "esri/widgets/Expand"
-        ], function(Map, MapView, Graphic, GraphicsLayer, LayerList, BasemapGallery, Legend, Expand) {
+            "esri/widgets/Expand",
+            "esri/widgets/Search",
+            "esri/widgets/Track"
+        ], function(Map, MapView, Graphic, GraphicsLayer, LayerList, BasemapGallery, Legend, Expand, Search, Track) {
 
             var map = new Map({
                 basemap: "topo-vector"
@@ -102,6 +92,10 @@
                 }
             });
 
+            var searchWidget = new Search({
+                view: view,
+                container: "searchWidget"
+            });
 
             var graphicsLayer = new GraphicsLayer();
             // Create attributes
@@ -346,28 +340,35 @@
             // });
             // map.add(patientPoint);
 
+            var track = new Track({
+                view: view
+            });
+            view.ui.add(track, "top-left");
+
+
             view.ui.add(
                 [
-                    new Expand({
-                        content: new Legend({
-                            view: view
-                        }),
-                        view: view,
-                        group: "top-left"
-                    }),
-                    new Expand({
-                        content: new LayerList({
-                            view: view
-                        }),
-                        view: view,
-                        group: "top-left"
-                    }),
                     new Expand({
                         content: new BasemapGallery({
                             view: view
                         }),
                         view: view,
                         expandIconClass: "esri-icon-basemap",
+                        group: "top-left"
+                    }),
+                    new Expand({
+                        content: new LayerList({
+                            view: view,
+                        }),
+                        view: view,
+                        expanded: true,
+                        group: "top-left"
+                    }),
+                    new Expand({
+                        content: new Legend({
+                            view: view
+                        }),
+                        view: view,
                         group: "top-left"
                     })
                 ],
@@ -385,14 +386,14 @@
         </div>
         <nav class="nav">
             <ul class="menu">
-                <li class="menu-item">
-                    <a href="map.html" class="menu-link">Bản đồ</a>
+                <li class="menu-item active">
+                    <a href="/" class="menu-link ">Bản đồ</a>
                 </li>
                 <li class="menu-item">
                     <a href="statistic.html" class="menu-link">Thống kê</a>
                 </li>
                 <li class="menu-item">
-                    <a href="route.html" class="menu-link">Lộ trình</a>
+                    <a href="/direction" class="menu-link">Lộ trình</a>
                 </li>
             </ul>
         </nav>
@@ -403,10 +404,11 @@
           </div>
       </div> -->
 
-        <div class="simple-search">
-            <input type="text" placeholder="Tìm kiếm" />
-            <button><i class="fa fa-search"></i></button>
-        </div>
+        <form id="searchWidgetForm">
+            <!-- <input type="text" placeholder="Tìm kiếm" />
+            <button type="submit" class="fa fa-search"></i></button> -->
+            <div id="searchWidget"></div>
+        </form>
     </header>
     <div id="viewDiv"></div>
 

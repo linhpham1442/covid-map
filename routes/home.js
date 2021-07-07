@@ -14,7 +14,7 @@ router.get('/thong-ke', function(req, res) {
     });
 })
 
-router.get('/di-chuyen', function(req, res) {
+router.get('/direction', function(req, res) {
     res.render('route', {
         title: 'Lộ trình'
     });
